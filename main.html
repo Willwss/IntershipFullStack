@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raspador da Amazon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input type="text" id="keyword" placeholder="Digite a palavra-chave">
+    <button onclick="scrape()">Raspar</button>
+    <div id="results"></div>
+
+    <script>
+        async function scrape() {
+            const keyword = document.getElementById('keyword').value;
+            const response = await fetch(`http://localhost:3000/api/scrape?k=${keyword}`);
+            const data = await response.json();
+            document.getElementById('results').innerHTML = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
